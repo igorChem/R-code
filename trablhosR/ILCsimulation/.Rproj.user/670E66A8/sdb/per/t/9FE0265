@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1454774176797.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "9FE0265",
+    "lastKnownWriteTime" : 80,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "f10t1mk2vh",
+        "caption" : "teste",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=teste&cache_key=f10t1mk2vh",
+        "displayedObservations" : 15,
+        "environment" : "",
+        "object" : "teste",
+        "totalObservations" : 15,
+        "variables" : 16
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

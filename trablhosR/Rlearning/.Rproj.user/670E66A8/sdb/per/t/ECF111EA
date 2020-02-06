@@ -1,0 +1,18 @@
+{
+    "contents" : "## geoR and geoRglm\n\nlibrary(geoR)\nlibrary(geoRglm)\n\ndata(\"p50\")\ndata(\"b50\")\n\n#First we use the geoR function grf to generate a simulation from a Gaussian random \ffield.\nx = seq(1, 10, l = 10)\ny = seq(1, 10, l = 10)\n\nsim.g <- grf(grid = expand.grid(x, +\n        y), cov.pars = c(0.1, 0.2))\n\nsim.g\n\nsim <- list(coords = sim.g$coords, units.m = c(rep(1,\n                                                   +     50), rep(5, 50)))\n\nsim\n\nattr(sim, \"class\") <- \"geodata\"\nsim$data <- rpois(100, lambda = sim$units.m * exp(sim.g$data))\n\nplot(sim$coords[, 1], sim$coords[, 2], type = \"n\")\n text(sim$coords[, 1], sim$coords[, 2], format(sim$data)) # interessenta\n\n#The core part of geoRglm consist of generating MCMC simulations from\n#the conditional distibution of the random effects at the data locations given\n#the  actual  observed  data.   Such  a  simulation  algorithm  is  needed  for  anylikelihood inference in generalised linear spatial models (prediction, Bayesian\n#inference and parameter estimation\n\n\nmodel2 <- list(cov.pars = c(1, 1), beta = 1, family = \"poisson\")\nmcmc2.test <- mcmc.control(S.scale = 0.2, thin = 1)\ntest2.tune <- glsm.mcmc(p50, model = model2, mcmc.input = mcmc2.test)\n\nmcmc2.tune <- mcmc.control(S.scale = 0.5, thin = 1)\ntest2.tune <- glsm.mcmc(p50, model = model2, mcmc.input = mcmc2.tune)\n\nlibrary(coda)\ntest2.tune.c <- create.mcmc.coda(test2.tune, mcmc.input = mcmc2.tune)\n\ntest2.tune.c <- create.mcmc.coda(test2.tune$simulations[45,]\n+     , mcmc.input = list(S.scale = 0.5, thin = 1))\n par(mfrow = c(1, 2))\n plot(test2.tune.c, density = FALSE, ask = FALSE, auto.layout = FALSE)\n autocorr.plot(test2.tune.c, ask = FALSE, auto.layout = FALSE)\n\n\nout2 <- output.glm.control(sim.predict = TRUE)\n pred.test2 <- glsm.krige(test2, locations = cbind(c(0.5,\n+     0.5), c(1, 0.4)), output = out2)\n\n\n## exemplo da função glsm.mcmc do help\nif(!exists(\".Random.seed\", envir=.GlobalEnv, inherits = FALSE)) set.seed(1234)\ndata(b50)\ntest <- glsm.mcmc(b50, model = list(family=\"binomial\",\n             cov.pars = c(1,1), beta = c(1,0), trend =~ rnorm(50),\n             cov.model=\"spherical\", nugget=0.3),\n          mcmc.input = mcmc.control(S.scale = 0.2, thin = 1))\n## visulalising the MCMC output using the coda package\ntest.coda <- create.mcmc.coda(test, mcmc.input = list(thin = 1))\nlibrary(coda)\n## Not run: \nplot(test.coda)\nautocorr.plot(test.coda) \n\n\n",
+    "created" : 1456271801309.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1388297183",
+    "id" : "ECF111EA",
+    "lastKnownWriteTime" : 1456319587,
+    "path" : "~/r/Rlearning/geoRglm.R",
+    "project_path" : "geoRglm.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

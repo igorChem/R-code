@@ -1,0 +1,571 @@
+# análises estatísticas das simulações computacionais 
+
+## análises preliminares 
+
+# packages and directories 
+
+library(caret)
+library(pls)
+library(kernlab)
+
+setwd("~")
+setwd("r/ILCsimulation")
+dir()
+View(ilc)
+# read archives 
+
+ilc <- read.delim("~/r/ILCsimulation/ilc", comment.char="#")
+attach(ilc)
+
+# perfil das variáveis
+str(ilc)
+names(ilc)
+
+ [1] "IL"               "temp"             "tempo"            "Conv"            
+ [5] "Selc"             "Yield"            "F_eleto"          "F_Nucleo"        
+ [9] "Hardness"         "Softness"         "Eletronegativity" "Acidity"         
+[13] "Basicity"         "fee"              "Cation"           "Anion"           
+[17] "Homo"             "Lumo" 
+View(ilc)
+
+
+# 1- Exploratory data analysis 
+## PCA 
+pca1 <-prcomp(ilc[,2:13],scale=T)
+summary(pca1) # até o quarto PC 
+png()
+biplot(pca1)
+dev.off()
+
+biplot(pca1,choice=c(1,3))
+loadings(pca1)
+plot(Yield~Basicity)
+
+biplot(pca1)
+biplot(pca1,choice=c(1,3))
+biplot(pca1,choice=c(2,3))
+biplot(pca1,choice=c(1,4))
+
+# busca com Genético algorithm 
+
+# arrumar as data.frame e fazer os preprocessing 
+
+ilc1 <-data.frame(Yield,F_eleto,F_Nucleo,Hardness,Basicity,fee,Softness,Acidity,Eletronegativity,Homo,Lumo)
+ilc10 <-scale(ilc1)
+
+#plots de exploração 
+par(mfrow=c(1,2))
+plot(log(Yield)~Basicity)
+plot(log(Yield)~log(Basicity))
+xyplot(Yield~Basicity|Anion)
+
+ilc2 <-data.frame(Conv,F_eleto,F_Nucleo,Hardness,Basicity,fee,Softness,Acidity,Eletronegativity,Homo,Lumo)
+ilc12 <-scale(ilc2)
+
+ilc3 <-data.frame(Selc,F_eleto,F_Nucleo,Hardness,Basicity,fee,Softness,Acidity,Eletronegativity,Homo,Lumo)
+ilc13 <-scale(ilc3)
+
+set.seed(1)
+ctrl <- gafsControl(functions = rfGA,
+                    method = "cv",
+                    number = 10)
+# GA feature selection para ilc1
+rf_search1 <- gafs(x = ilc1[,-1],
+                  y = ilc1[,1],
+                  iters = 3,
+                  gafsControl = ctrl)
+rf_search1
+
+## Yield
+  #* the top 5 selected variables (out of a possible 10):
+   # Softness (80%), Hardness (70%), Lumo (40%), Acidity (30%), Basicity (20%)
+  #* on average, 3 variables were selected (min = 1, max = 7)
+
+#In the final search using the entire training set:
+ #  * 4 features selected at iteration 3 including:
+  #   Hardness, Basicity, Softness, Lumo  
+   #* external performance at this iteration is
+
+    #  RMSE   Rsquared 
+   #  1.411         NA 
+
+
+
+# GA feature selection para ilc10
+rf_search10 <- gafs(x = ilc10[,-1],
+                  y = ilc10[,1],
+                  iters = 3,
+                  gafsControl = ctrl)
+rf_search10
+
+## Yield com predictors scaled 
+#During resampling:
+#  * the top 5 selected variables (out of a possible 10):
+#    Hardness (80%), Softness (80%), Basicity (50%), Acidity (20%), #Eletronegativity (10%)
+#  * on average, 2.7 variables were selected (min = 1, max = 5)
+
+#In the final search using the entire training set:
+#   * 2 features selected at iteration 3 including:
+#     fee, Softness  
+#   * external performance at this iteration is
+
+#       RMSE    Rsquared 
+#     0.9179          NA 
+
+
+# GA feature selection para ilc2
+rf_search2 <- gafs(x = ilc2[,-1],
+                  y = ilc2[,1],
+                  iters = 3,
+                  gafsControl = ctrl)
+rf_search2
+
+#During resampling:
+#  * the top 5 selected variables (out of a possible 10):
+#    Basicity (90%), F_Nucleo (80%), F_eleto (70%), Hardness (50%), Softness (40%)
+#  * on average, 3.9 variables were selected (min = 1, max = 6)
+
+#In the final search using the entire training set:
+#   * 4 features selected at iteration 3 including:
+#     F_eleto, F_Nucleo, Hardness, Softness  
+#   * external performance at this iteration is
+
+#      RMSE   Rsquared 
+#     1.661         NA 
+
+
+
+
+# GA feature selection para ilc12
+rf_search12 <- gafs(x = ilc12[,-1],
+                  y = ilc12[,1],
+                  iters = 3,
+                  gafsControl = ctrl)
+
+rf_search12
+
+#During resampling:
+#  * the top 5 selected variables (out of a possible 10):
+#    F_eleto (80%), F_Nucleo (80%), Basicity (40%), Hardness (40%), Softness (30%)
+#  * on average, 3.1 variables were selected (min = 1, max = 4)
+
+#In the final search using the entire training set:
+#   * 3 features selected at iteration 3 including:
+#     F_eleto, Basicity, fee  
+#   * external performance at this iteration is
+
+#       RMSE    Rsquared 
+#     0.8586          NA
+
+# GA feature selection para ilc3
+rf_search3 <- gafs(x = ilc3[,-1],
+                  y = ilc3[,1],
+                  iters = 3,
+                  gafsControl = ctrl)
+rf_search3 
+
+ctrl1 <- safsControl(functions = rfSA,
+                    method = "cv",
+                    number = 50)
+
+
+rf_search30 <- safs(x = ilc3[,-1],
+                  y = ilc3[,1],
+                  iters = 150,
+                  safsControl = ctrl1)
+rf_search30 
+
+During resampling:
+  * the top 5 selected variables (out of a possible 10):
+    Acidity (90%), Softness (80%), Hardness (70%), Lumo (20%), Basicity (15%)
+  * on average, 3 variables were selected (min = 2, max = 5)
+
+In the final search using the entire training set:
+   * 3 features selected at iteration 3 including:
+     F_Nucleo, Hardness, Homo  
+   * external performance at this iteration is
+
+      RMSE   Rsquared 
+     11.66         NA 
+#During resampling:
+#  * the top 5 selected variables (out of a possible 10):
+#    Softness (90%), Acidity (80%), Hardness (70%), Basicity (40%), fee (20%)
+#  * on average, 3.4 variables were selected (min = 2, max = 5)
+
+#In the final search using the entire training set:
+#   * 4 features selected at iteration 1 including:
+#     Hardness, fee, Softness, Acidity  
+#   * external performance at this iteration is
+
+#      RMSE   Rsquared 
+#     14.21         NA
+
+# GA feature selection para ilc13
+rf_search13 <- gafs(x = ilc13[,-1],
+                  y = ilc13[,1],
+                  iters = 3,
+                  gafsControl = ctrl)
+rf_search13
+
+
+#During resampling:
+#  * the top 5 selected variables (out of a possible 10):
+#    Softness (60%), Homo (50%), Hardness (40%), Eletronegativity (10%), fee (10%)
+#  * on average, 1.7 variables were selected (min = 1, max = 3)
+
+#In the final search using the entire training set:
+#   * 5 features selected at iteration 2 including:
+#     Hardness, Basicity, fee, Softness, Homo  
+#   * external performance at this iteration is
+
+#       RMSE    Rsquared 
+#     0.3917          NA 
+
+rf_search31 <- safs(x = ilc3[,-1],
+                  y = ilc3[,1],
+                  iters = 150,
+                  safsControl = ctrl1)
+## modelos 
+
+## Yield com PCA feature extraction and neural networks e outros modelos 
+
+train1 <-data.frame(Hardness,Basicity,Acidity,Softness)
+train2 <-data.frame(Hardness,Basicity,Acidity,Softness,Lumo)
+
+	mod1 <- train(train1,Yield,preProcess=c("center","scale"),method="pcaNNet")
+	mod2 <- train(train1,Yield,method="pcaNNet")
+	mod3 <- train(train1,Yield,preProcess=c("center","scale"),method="kernelpls")
+	mod4 <- train(train1,Yield,method="kernelpls")
+	mod5 <- train(train2,Yield,method="kernelpls")
+	mod6 <- train(train2,Yield,method="pcaNNet")
+	mod7 <- train(train1,Yield,method="krlsPoly")
+	mod8 <- train(train1,Yield,method="krlsRadial")
+	mod9 <- train(train1,Yield,method="svmPoly")
+	mod10 <- train(train1,Yield,method="svmRadial")
+	mod11 <- train(train1,Yield,method="svmRadialCost")
+
+
+## Selectivity 
+
+
+
+
+## biplots 
+# carregar lattice package 
+pca2 <-prcomp(ilc[4:13],scale=T)
+summary(pca2)
+loadings(pca2)
+biplot(pca2)
+
+
+
+xyplot(Conv~tempo)
+xyplot(Conv~temp)
+xyplot(Selc~tempo)
+splom(ilc)
+
+#separação das tabelas 
+ilc1 <- ilc[1:8,]
+ilc2 <- subset(ilc,tempo=="12") 
+# bilots
+splom(ilc1)
+
+xyplot(Selc~tempo,groups = IL,data = ilc1,type=c("g","b"),pch=1:2,ylab="Selectivity(%)",xlab="Tempo(h)")
+xyplot(Conv~tempo,groups = IL,data = ilc1,type=c("g","b"),pch=1:2,ylab="Conversion(%)",xlab="Tempo(h)")
+xyplot(Yield~tempo,groups = IL,data = ilc1,type=c("g","b"),pch=1:2,ylab="Yield(%)",xlab="Tempo(h)")
+xyplot(Selc~Hardness,groups =tempo,data = ilc1,type=c("g","b"),pch=1:2,ylab="Selectivity(%)",xlab="Hardness(eV)")
+xyplot(Selc~F_eleto,groups = IL,data = ilc1,type=c("g","b"),pch=1:2,ylab="Selectivity(%)",xlab="Tempo(h)")
+
+# estudo da variável F_eleto 
+splom(ilc2[,2:11])
+xyplot((Selc)~(F_eleto)|Cation)
+xyplot((Selc)~(exp(-F_eleto*tempo))|Anion,dailc3ta=ilc) #interessante
+xyplot(Conv~F_eleto|Cation) 
+xyplot(Conv~F_eleto|Anion)
+xyplot(log(Yield)~(F_eleto)|Anion) #interessante 
+
+# estudo das respostas 
+plot(Yield)
+plot(Selc)
+plot(Conv)
+
+# estudo da variável F_Núcleo 
+xyplot(Selc~(F_Nucleo)|Cation)
+xyplot(Selc~exp(-1/F_Nucleo)|Cation)
+xyplot(Selc~(F_Nucleo)|Anion,groups = Cation,type="p")
+xyplot(Yield~F_Nucleo|Cation,type="o") #só para cloreto
+xyplot(Yield~F_Nucleo|Anion,groups = Cation,pch=1:5,auto.key =T) # pode ou não ter um padrão
+
+# estudo da variável Hardness 
+
+xyplot(Selc~Hardness|Anion,groups = Cation)
+xyplot(Selc~Hardness|Cation)
+xyplot(Yield~Hardness|Anion,groups = Cation,group=Cation)
+xyplot(Yield~Hardness|Cation,groups = Anion) # juntar; imidazoliums e pyridiniuns 
+
+# estudo da variável softness
+
+xyplot(Selc~Softness|Anion)
+xyplot(Selc~log(Softness)|Cation,groups = F_Nucleo,auto.key = T)
+xyplot(Yield~Softness|Anion)
+xyplot(exp(-Yield/8)~log(Softness)|Cation)
+
+# estudo da variável eletronegativity
+
+xyplot(Selc~Eletronegativity,groups = Anion,pch=1:4)
+xyplot(Selc~Eletronegativity,groups = Cation)
+xyplot(Selc~Eletronegativity|Anion)
+xyplot(Selc~Eletronegativity|Cation)
+xyplot(Yield~Eletronegativity|Anion) # muito forte para ntf2
+xyplot(Yield~Eletronegativity|Cation)
+xyplot(Conv~Eletronegativity|Cation)
+xyplot(Conv~Eletronegativity|Anion)
+# estudo da variável chemical potential 
+
+xyplot(Selc~fee)
+xyplot(Selc~fee|Cation)
+
+# estudo da variável basicidade 
+
+xyplot(Selc~log(Basicity))
+xyplot(Selc~Basicity|Cation)
+xyplot(Selc~Basicity|Anion)
+xyplot(Yield~Basicity)
+
+#estudo da variável acidez
+
+xyplot(Selc~Acidity|Cation)
+xyplot(Selc~Acidity|Anion)
+xyplot(Yield~Acidity)
+xyplot(Yield~Acidity|Cation,groups = Anion) # ficou legal bpy
+xyplot(Conv~(Basicity-Acidity)|Anion)
+### segundo Estudo de PCA
+
+pca3 <-prcomp(ilc2[5:15],scale=T)
+summary(pca3)
+loadings(pca3)
+        
+plot(loadings(pca3))
+plot(scores(pca3))
+
+biplot(pca3) # primeiro indício que cl é outlier 
+
+## Anova approach 
+#estudo da seletividade 
+aggregate(Selc,by=list(Anion),FUN=mean )
+aggregate(Selc,by=list(Anion),FUN=sd )
+aggregate(Selc,by=list(Cation),FUN=mean )
+aggregate(Selc,by=list(Cation),FUN=sd)
+plotmeans(Selc~Anion) #segundo indicio que cl é outlier
+
+# tentar criar escalas com as outras variáveis na ordem de:
+# bf4>cl>pf6>ntf2
+
+plotmeans(Selc~Cation) # indício que não há muito diferença
+
+#anova para seletividade em função do anion
+fit1 <-aov(Selc~Anion*Cation, data=ilc2,qr=T,projections = T)
+summary(fit1)
+plot(fit1)
+coefficients(fit1)
+
+fit11 <-aov(Selc~Cation,data=ilc2) # a seletividade tem fraca correlação com o tipo de cation 
+summary(fit11)
+#estudo da convsersão 
+aggregate(Conv,by=list(Anion),FUN=mean )
+aggregate(Conv,by=list(Anion),FUN=sd )
+aggregate(Conv,by=list(Cation),FUN=mean )
+aggregate(Conv,by=list(Cation),FUN=sd)
+plotmeans(Conv~Anion) # terceiro indicio de Cl como outlier
+
+fit2 <-aov(Conv~Anion,data =ilc2) # conversão tem um significativa correlação com o tipo de anion 
+
+summary(fit2)
+
+#anova para yield  
+fit3 <-aov(Yield~Anion) # pior que seletividade 
+summary(fit3)
+fit4 <-aov(Yield~Cation) # sem relação 
+
+
+summary(fit4)
+
+#propriedades em função dos anions
+xyplot(Hardness~Anion,groups=Cation)
+xyplot(Hardness~Cation)
+xyplot(Softness~Anion)
+plotmeans(Softness~Anion)
+plotmeans(Hardness~Anion)
+xyplot(Acidity~Anion)
+xyplot(Acidity~Cation)
+xyplot(Basicity~Anion)
+plotmeans(Basicity~Anion)
+xyplot(Selc~Basicity|Anion)
+xyplot(fee~Anion)
+xyplot(F_eleto~Anion)
+plotmeans(F_eleto~Anion)
+xyplot(Selc~F_eleto|Anion)
+xyplot(Selc~F_Nucleo|Anion)
+xyplot(Eletronegativity~Anion)
+xyplot(Eletronegativity*F_eleto~Anion)
+xyplot(Eletronegativity*F_Nucleo~Anion)
+xyplot(Eletronegativity*Basicity~Anion) #olhar 
+xyplot(Eletronegativity*Acidity~Anion,groups = Cation)
+xyplot(Eletronegativity*Hardness~Anion)
+xyplot(Eletronegativity*Softness~Anion,groups = Cation)       # olhar
+xyplot(Eletronegativity*fee~Anion)
+
+xyplot(Softness*F_eleto~Anion,groups = Cation)
+xyplot(Softness*F_eleto~Cation)
+xyplot(Softness*F_Nucleo~Anion)
+xyplot(Softness*Hardness~Anion)
+xyplot(Softness*fee~Anion)
+xyplot(Softness*Basicity~Anion)
+xyplot(Softness*Acidity~Anion) ## olhar
+xyplot(Selc~Softness*Acidity|Anion)
+xyplot(F_eleto*fee~Anion)
+xyplot(F_eleto*Hardness~Anion)
+xyplot(F_eleto*Acidity~Anion)
+xyplot(F_eleto*Basicity~Anion)
+xyplot((1/F_eleto*F_Nucleo~Anion),groups = Cation)
+xyplot(Acidity*Basicity~Anion)
+xyplot(Acidity*Hardness~Anion)
+xyplot(exp(Acidity*F_Nucleo)~Anion,groups = Cation, auto.key = T)
+      
+xyplot(Basicity/F_Nucleo~Anion)
+
+xyplot(F_eleto*fee~Anion)
+
+## loucurada
+modt1 <-mvr(Selc~Hardness*F_Nucleo*F_eleto*Eletronegativity*Acidity*Basicity*Softness,9,validation = "CV",method = "oscorespls")
+summary(modt1)
+loadings(modt1)
+## 
+xyplot(Homo~Anion)
+xyplot(Lumo~Anion)
+xyplot(Selc~Lumo)
+xyplot(Yield~Lumo)
+xyplot(Lumo~Cation)
+
+
+#GHGT 
+
+# solubilida correlations 
+
+xyplot(Homo.eV.~Henry)
+xyplot(Lumo.eV.~Henry)
+xyplot(Fukui.eleto~Henry)
+xyplot(Basicity~Henry|Cation)
+xyplot(Acidity~Henry,type="smooth") # talvez valha a pena
+xyplot(Acidity~1/Henry,type="smooth")
+xyplot(Absolute.Hardness~Henry)
+xyplot(Absolute.Softness~Henry)
+
+plot(Fukui.Nucleo~Henry)
+plot(chemical.electronic.potential~exp(-Henry)) # parece interessante
+plot((log(1/Total.Eletrophilicity))~log(Henry))
+
+plot(exp(Homo.eV.)~Entropy)
+plot(Lumo.eV.~Entropy)
+plot((chemical.electronic.potential^3)~Entropy)
+plot(Entropy~chemical.electronic.potential)
+plot(Henry~Entropy)
+plot(Fukui.eleto~Entropy)
+plot(Fukui.Nucleo~Entropy)
+plot(Absolute.Hardness~Entropy)
+plot(Absolute.Softness~w)
+w <-1/Entropy
+
+plot(Acidity~Entropy)
+plot(Basicity~Entropy)# could have some relationship
+
+plot(Absolute.Hardness~Enthalpy)
+plot(Absolute.Softness~Enthalpy)
+plot(chemical.electronic.potential~Enthalpy)
+plot(Lumo.eV.~Enthalpy)
+plot(Fukui.eleto~Enthalpy)
+plot(Fukui.Nucleo~Enthalpy)
+plot(Acidity~Enthalpy)
+plot(Basicity~Enthalpy)
+
+attach(data)
+plot(Henry~Absolute.Hardness)
+plot(Henry~Absolute.Softness)
+plot(Henry~Basicity)
+plot(log(Henry)~log(Acidity))
+plot(log(Henry)~log(Total.Eletrophilicity)) # estudar a retirada de outliers 
+
+plot(Enthalpy~Absolute.Hardness)
+plot(Enthalpy~Absolute.Softness)
+plot(Enthalpy~Acidity) # legal
+plot(Enthalpy~Basicity)
+plot(Enthalpy~Total.Eletrophilicity)
+
+plot(Entropy~Absolute.Hardness)
+plot(Entropy~Absolute.Softness)
+plot(Entropy~Acidity) # legal
+plot(Entropy~Basicity)
+plot(Entropy~Total.Eletrophilicity)
+
+pca0 <-prcomp(tab1[1:8],scale=T)
+biplot(pca0)
+tab1 <-na.omit(data)
+tab2 <-tab1[-3,]
+pca1 <-prcomp(tab2,scale=T)
+summary(pca1)
+biplot(pca1)
+fit5 <-lm(Henry~Acidity)
+summary(fit5)
+fit6 <-lm(Entropy~Acidity)
+summary(fit6)
+d <-cbind(Entropy,anions)
+plot(Entropy~Anion,data = tab1)
+plot(Entropy~Cation,data = tab1)
+plot(Henry~Anion)
+xyplot(Enthalpy~Acidity|Anion,data=tab1,groups = Cation,auto.key = T)
+xyplot(Enthalpy~Acidity|Cation,data=tab1)
+
+pls1 <-mvr(Enthalpy~Acidity+Basicity+Total.Eletrophilicity+Absolute.Hardness,method="oscorespls",validation="LOO")
+summary(pls1)
+R2(pls1)
+plot(Henry~Acidity)
+plot(Enthalpy~Acidity)
+plot(Entropy~Acidity)
+plot(Entropy~Enthalpy)
+plot(Henry~Entropy)
+plot(Henry~Enthalpy)
+
+ggplot(tab1, aes(x=Henry, y=Acidity)) +
+  geom_point(shape=1) +
+  geom_smooth(method=lm)
+
+ggplot(tab1, aes(x=Enthalpy, y=Acidity)) +
+  geom_point(shape=1) +
+  geom_smooth(method=lm)
+
+
+p <-ggplot(tab1, aes(x=Entropy, y=Acidity)) +
+  geom_point(shape=1,cex=2.5,col="red") +
+  geom_smooth(method=lm)
+
+p + labs(x="Entropy(J/mol.K)",cex=1.5)+
+     labs(y="Acidity(eV)",cex=1.5)
+  
+
+
+
+j <-ggplot(tab1, aes(x=Entropy, y=Absolute.Hardness)) +
+  geom_point(shape=1) +
+  geom_smooth(method=lm)
+j
+
+g <-ggplot(tab1, aes(x=Entropy, y=Basicity)) +
+  geom_point(shape=1) +
+  geom_smooth(method=lm)
+g
+
+t <-ggplot(tab1, aes(x=Henry, y=Total.Eletrophilicity)) +
+  geom_point(shape=1) +
+  geom_smooth(method=lm)
+t
+summary(t)

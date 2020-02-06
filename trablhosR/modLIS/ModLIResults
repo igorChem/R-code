@@ -1,0 +1,164 @@
+Descritive statistics fo Viscosity modelling 
+===================================================================================
+Conc_mol_L massfractionIL   massfractionH2O  molarfractionIL  
+ 0      : 3   Min.   :0.0000   Min.   :0.4380   Min.   :0.00000  
+ 0.007  : 1   1st Qu.:0.1720   1st Qu.:0.4960   1st Qu.:0.01900  
+ 0.292  : 1   Median :0.3790   Median :0.6210   Median :0.05100  
+ 0.555  : 1   Mean   :0.3311   Mean   :0.6689   Mean   :0.05211  
+ 0.593  : 1   3rd Qu.:0.5040   3rd Qu.:0.8280   3rd Qu.:0.08700  
+ 0.741  : 1   Max.   :0.5620   Max.   :1.0000   Max.   :0.10900  
+ (Other):29                                                      
+    density          sufTen      Viscosity..cP.         RI       
+ Min.   :0.997   Min.   :51.18   Min.   :  0.89   Min.   :1.332  
+ 1st Qu.:1.033   1st Qu.:61.82   1st Qu.:  1.31   1st Qu.:1.365  
+ Median :1.081   Median :63.25   Median :  4.94   Median :1.438  
+ Mean   :1.129   Mean   :64.46   Mean   : 28.91   Mean   :1.435  
+ 3rd Qu.:1.238   3rd Qu.:68.19   3rd Qu.: 23.38   3rd Qu.:1.511  
+ Max.   :1.329   Max.   :74.07   Max.   :308.93   Max.   :1.544  
+                                                                 
+               IL         Cation        Anion    Temperature.K.       MW       
+ [BMIM][Br]     :13   BMIM   :25   Br      :25   Min.   :298    Min.   :171.6  
+ [BMIM][Cl]     :12   EMIM   :12   Cl      :12   1st Qu.:298    1st Qu.:171.6  
+ [EMIM][Br]     :12          : 0           : 0   Median :298    Median :188.0  
+ [BMIM][BF4]    : 0   C2amm  : 0   BF4     : 0   Mean   :298    Mean   :192.6  
+ [bmim][MetSO4] : 0   C3amm  : 0   [EtSO4] : 0   3rd Qu.:298    3rd Qu.:216.0  
+ [bmim][triﬂate]: 0   C4amm  : 0   [MetSO4]: 0   Max.   :298    Max.   :216.0  
+ (Other)        : 0   (Other): 0   (Other) : 0                                 
+    Mwcation        Mwanion       Alkyl.Lenght        MVIL      
+ Min.   :108.1   Min.   :35.50   Min.   :2.000   Min.   :141.5  
+ 1st Qu.:108.1   1st Qu.:35.50   1st Qu.:2.000   1st Qu.:162.7  
+ Median :136.1   Median :79.90   Median :4.000   Median :170.9  
+ Mean   :127.1   Mean   :65.69   Mean   :3.351   Mean   :171.3  
+ 3rd Qu.:136.1   3rd Qu.:79.90   3rd Qu.:4.000   3rd Qu.:176.5  
+ Max.   :136.1   Max.   :86.80   Max.   :4.000   Max.   :216.7 
+ 
+===================================================================================
+descritive statistics for the heat capacity modelling 
+
+summary(tab2)
+  Concentração          Cp         Temperatura            LI    
+ Min.   :0.0000   Min.   : 75.0   Min.   :283.1   EMIMETSO4:70  
+ 1st Qu.:0.4079   1st Qu.: 87.0   1st Qu.:293.1   EMIMOTF  :70  
+ Median :0.8127   Median :132.0   Median :313.1   EMIMTFA  :70  
+ Mean   :0.6733   Mean   :169.8   Mean   :313.1                 
+ 3rd Qu.:0.9684   3rd Qu.:241.8   3rd Qu.:333.1                 
+ Max.   :1.0000   Max.   :403.0   Max.   :343.1                 
+       MM       
+ Min.   :224.2  
+ 1st Qu.:224.2  
+ Median :260.2  
+ Mean   :291.9  
+ 3rd Qu.:391.3  
+ Max.   :391.3
+
+=====================================================================================
+
+resultados do pca para os dados de modelagem para viscosidade 
+summary(pca1) 
+Importance of components:
+                          PC1    PC2    PC3    PC4     PC5    PC6     PC7
+Standard deviation     2.3486 1.4168 1.1199 0.7530 0.59982 0.5089 0.18807
+Proportion of Variance 0.5516 0.2007 0.1254 0.0567 0.03598 0.0259 0.00354
+Cumulative Proportion  0.5516 0.7523 0.8777 0.9344 0.97041 0.9963 0.99985
+                           PC8      PC9      PC10
+Standard deviation     0.03799 0.008685 9.761e-16
+Proportion of Variance 0.00014 0.000010 0.000e+00
+Cumulative Proportion  0.99999 1.000000 1.000e+00
+
+---------------------------------------------------------------------------------------
+
+loadings(pca1)
+
+Loadings:
+                PC1    PC2    PC3    PC4    PC5    PC6    PC7    PC8    PC9   
+massfractionIL   0.358 -0.332         0.271         0.164  0.786  0.186       
+molarfractionIL  0.335 -0.289         0.195        -0.858 -0.168              
+density          0.300 -0.450         0.212 -0.151  0.441 -0.585  0.320       
+Viscosity..cP.         -0.500 -0.348 -0.735  0.287                            
+Temperature.K.   0.324  0.125  0.280  0.139  0.877                            
+MW               0.408         0.149 -0.177 -0.203               -0.406  0.746
+Alkyl.Lenght     0.280  0.289 -0.561                                          
+MVIL             0.303  0.402  0.202 -0.430 -0.142 -0.110         0.698       
+Mwcation         0.280  0.289 -0.561                                          
+Mwanion          0.384         0.326 -0.228 -0.232               -0.450 -0.654
+                PC10  
+massfractionIL        
+molarfractionIL       
+density               
+Viscosity..cP.        
+Temperature.K.        
+MW                    
+Alkyl.Lenght    -0.707
+MVIL                  
+Mwcation         0.707
+Mwanion               
+
+               PC1 PC2 PC3 PC4 PC5 PC6 PC7 PC8 PC9 PC10
+SS loadings    1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0 1.0  1.0
+Proportion Var 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.1  0.1
+Cumulative Var 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9  1.0
+
+========================================================================
+resultado do pca para os dados de modelagem para cp 
+
+summary(pca2)
+Importance of components:
+                          PC1    PC2    PC3     PC4
+Standard deviation     1.4120 1.0020 0.9984 0.07444
+Proportion of Variance 0.4984 0.2510 0.2492 0.00139
+Cumulative Proportion  0.4984 0.7494 0.9986 1.00000
+> plot(pca2)
+> loadings(pca2)
+
+Loadings:
+             PC1    PC2    PC3    PC4   
+Concentração  0.706                0.706
+Cp           -0.707                0.707
+Temperatura         -0.739  0.672       
+MM                  -0.671 -0.740       
+
+                PC1  PC2  PC3  PC4
+SS loadings    1.00 1.00 1.00 1.00
+Proportion Var 0.25 0.25 0.25 0.25
+Cumulative Var 0.25 0.50 0.75 1.00
+
+========================================================================
+
+corrrelação entre as variáveis para os dados de viscosidade 
+cor(tab11pca)
+                massfractionIL molarfractionIL   density Viscosity..cP.
+massfractionIL       1.0000000       0.8427285 0.9317810     0.29528034
+molarfractionIL      0.8427285       1.0000000 0.7464449     0.29068399
+density              0.9317810       0.7464449 1.0000000     0.42648970
+Viscosity..cP.       0.2952803       0.2906840 0.4264897     1.00000000
+Temperature.K.       0.5518224       0.5071616 0.3969325    -0.13860077
+MW                   0.7259077       0.6587738 0.5873199    -0.01021393
+Alkyl.Lenght         0.3709749       0.3585319 0.2332016    -0.01440167
+MVIL                 0.2662758       0.3014878 0.0769593    -0.25594878
+Mwcation             0.3709749       0.3585319 0.2332016    -0.01440167
+Mwanion              0.7194699       0.6461973 0.6026475    -0.00381835
+                Temperature.K.          MW Alkyl.Lenght       MVIL    Mwcation
+massfractionIL       0.5518224  0.72590774   0.37097493  0.2662758  0.37097493
+molarfractionIL      0.5071616  0.65877376   0.35853189  0.3014878  0.35853189
+density              0.3969325  0.58731986   0.23320160  0.0769593  0.23320160
+Viscosity..cP.      -0.1386008 -0.01021393  -0.01440167 -0.2559488 -0.01440167
+Temperature.K.       1.0000000  0.73039069   0.38810462  0.6333317  0.38810462
+MW                   0.7303907  1.00000000   0.57158939  0.8476324  0.57158939
+Alkyl.Lenght         0.3881046  0.57158939   1.00000000  0.5349721  1.00000000
+MVIL                 0.6333317  0.84763240   0.53497207  1.0000000  0.53497207
+Mwcation             0.3881046  0.57158939   1.00000000  0.5349721  1.00000000
+Mwanion              0.7188469  0.97273922   0.36608073  0.8091686  0.36608073
+                    Mwanion
+massfractionIL   0.71946988
+molarfractionIL  0.64619725
+density          0.60264747
+Viscosity..cP.  -0.00381835
+Temperature.K.   0.71884694
+MW               0.97273922
+Alkyl.Lenght     0.36608073
+MVIL             0.80916861
+Mwcation         0.36608073
+Mwanion          1.00000000
+=============================================================================
+
+concentração entre as variáveis para os dados de modelagem do cp

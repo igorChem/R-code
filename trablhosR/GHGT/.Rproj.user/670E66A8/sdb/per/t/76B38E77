@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1454894713001.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "76B38E77",
+    "lastKnownWriteTime" : 0,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "uis41roq7p",
+        "caption" : "PCA",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=PCA&cache_key=uis41roq7p",
+        "displayedObservations" : "32",
+        "environment" : "",
+        "object" : "PCA",
+        "totalObservations" : "32",
+        "variables" : "18"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

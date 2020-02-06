@@ -1,0 +1,137 @@
+Setor Industrial	Número de Indústrias	Municipio	TA t/ano	Concentração g/d	Longitude	Latitude
+Madeira	1	Cambará do Sul	0.02	7.21E-08	-50.195	-28.839
+Papel e Papelão	1	Cambará do Sul	0.04	1.53E-07	-50.26	-28.934
+Alimentos	1	Bom Jesus	0.06	8.03E-08	-50.706	-28.795
+Produtos de Metal	21	Caxias do Sul	4.90	7.14E-06	-50.803	-28.963
+Veículos Automotores	25	Caxias do Sul	5.81	8.46E-06	-50.805	-28.931
+Transporte	2	Caxias do Sul	0.31	4.50E-07	-50.807	-28.866
+Minerais não-Metálicos	1	Caxias do Sul	0.05	4.36E-08	-50.911	-28.801
+Produtos Diversos	2	Caxias do Sul	0.74	6.27E-07	-50.968	-28.803
+Máquinas e Equipamentos	34	Caxias do Sul	4.25	3.59E-06	-50.97	-28.805
+Material Elétrico	14	Caxias do Sul	1.71	1.44E-06	-50.975	-28.831
+Mobiliário	8	Caxias do Sul	0.07	5.81E-08	-51.001	-28.823
+Plásticos e borracha	18	Caxias do Sul	0.63	5.28E-07	-51.017	-28.839
+Química	3	Caxias do Sul	61.53	5.20E-05	-51.02	-28.839
+Vestuário	6	Caxias do Sul	0.04	3.74E-08	-51.037	-28.833
+Equipamentos de precisão	3	Caxias do Sul	0.02	1.56E-08	-51.046	-28.853
+Gráfica	1	Caxias do Sul	0.00	9.96E-11	-51.047	-28.859
+Papel e Papelão	1	Caxias do Sul	0.06	5.27E-08	-51.049	-28.852
+Metalurgica	1	Caxias do Sul	5.84	4.94E-06	-51.055	-28.864
+Têxtil	3	Caxias do Sul	2.10	1.77E-06	-51.1	-28.843
+Couros	2	Caxias do Sul	0.71	3.46E-07	-51.101	-29.037
+Máquinas e Equipamentos	1	Vacaria	0.08	1.84E-03	-51.106	-28.533
+Máquinas e Equipamentos	1	São Marcos	0.06	5.24E-08	-51.165	-28.88
+Mobiliário	3	São Marcos	0.01	2.53E-09	-51.169	-28.938
+Veículos Automotores	3	São Marcos	0.25	1.24E-07	-51.174	-28.936
+Couros	1	Flores da Cunha	0.11	5.38E-08	-51.248	-28.95
+Alimentos	2	Antônio Prado	0.22	1.56E-07	-51.277	-28.924
+Alimentos	1	Santa Cruz do Sul	0.35	1.46E-07	-51.306	-29.667
+Alimentos	2	Caxias do Sul	0.52	6.99E-06	-51.311	-29.087
+Produtos de Metal	1	Flores da Cunha	0.04	5.66E-07	-51.323	-29.061
+Mobiliário	3	Antônio Prado	0.01	9.97E-09	-51.324	-28.956
+Mobiliário	3	Flores da Cunha	0.06	8.02E-07	-51.33	-29.063
+Fumo	6	Santa Cruz do Sul	3.28	1.37E-06	-51.331	-29.547
+Veículos Automotores	3	Flores da Cunha	0.16	2.19E-06	-51.349	-29.056
+Plásticos e borracha	2	Farroupilha	0.03	3.41E-07	-51.363	-29.086
+Produtos de Metal	1	Farroupilha	1.53	2.05E-05	-51.366	-29.076
+Alimentos	1	Farroupilha	0.05	6.89E-07	-51.38	-29.065
+Minerais não-Metálicos	1	Farroupilha	0.03	3.93E-07	-51.383	-29.065
+Mobiliário	5	Farroupilha	0.02	2.56E-07	-51.384	-29.063
+Couros	3	Farroupilha	33.88	4.54E-04	-51.388	-29.065
+Vestuário	1	Farroupilha	0.01	9.47E-08	-51.404	-29.055
+Mobiliário	8	Lagoa Vermelha	0.04	7.86E-04	-51.405	-28.534
+Têxtil	1	Farroupilha	0.84	1.12E-05	-51.416	-29.058
+Máquinas e Equipamentos	3	Farroupilha	0.35	4.69E-06	-51.42	-29.057
+Máquinas e Equipamentos	1	Vila Flores	0.23	2.35E-07	-51.447	-28.864
+Produtos de Metal	1	Vila Flores	0.38	3.80E-07	-51.461	-28.857
+Produtos Diversos	1	Nova Roma do Sul	0.05	1.79E-08	-51.476	-29.017
+Máquinas e Equipamentos	1	Nova Roma do Sul	0.05	1.59E-08	-51.477	-29.015
+Mobiliário	21	Bento Gonçalves	0.24	9.91E-08	-51.481	-29.126
+Mobiliário	1	Nova Prata	0.03	2.53E-08	-51.499	-28.817
+Gráfica	1	Bento Gonçalves	0.00	2.27E-11	-51.526	-29.068
+Plásticos e borracha	1	Nova Prata	0.06	7.08E-08	-51.528	-28.76
+Couros	1	Nova Prata	0.39	4.87E-07	-51.529	-28.758
+Produtos Diversos	1	Bento Gonçalves	0.02	7.92E-09	-51.539	-29.028
+Plásticos e borracha	4	Bento Gonçalves	0.31	1.13E-07	-51.543	-29.015
+Veículos Automotores	1	Bento Gonçalves	0.06	1.61E-08	-51.571	-29.045
+Vestuário	2	Bento Gonçalves	0.01	2.93E-09	-51.600	-29.045
+Material Elétrico	1	Carlos Barbosa	0.21	4.52E-08	-51.605	-29.368
+Plásticos e borracha	1	Carlos Barbosa	0.04	9.37E-09	-51.608	-29.37
+Máquinas e Equipamentos	1	Barão	0.30	6.26E-08	-51.608	-29.39
+Produtos de Metal	1	Veranópolis	0.68	1.99E-07	-51.611	-29.005
+Produtos de Metal	4	Carlos Barbosa	7.02	1.48E-06	-51.612	-29.373
+Vestuário	1	Barão	0.00	4.63E-10	-51.613	-29.382
+Metalurgica	2	Veranópolis	2.73	7.95E-07	-51.625	-29.016
+Máquinas e Equipamentos	4	Veranópolis	0.42	1.24E-07	-51.627	-29.017
+Máquinas e Equipamentos	5	Bento Gonçalves	0.69	1.87E-07	-51.634	-29.069
+Alimentos	1	Salvador do Sul	0.06	1.20E-08	-51.643	-29.417
+Alimentos	2	Bento Gonçalves	0.29	7.97E-08	-51.647	-29.085
+Plásticos e borracha	1	Salvador do Sul	0.07	1.50E-08	-51.652	-29.422
+Material Elétrico	1	Bento Gonçalves	0.05	1.41E-08	-51.671	-29.05
+Alimentos	1	Montenegro	0.06	3.08E-08	-51.681	-29.657
+Couros	1	Bento Gonçalves	0.47	1.29E-07	-51.683	-29.092
+Alimentos	2	Garibaldi	1.34	3.67E-07	-51.684	-29.212
+Material Elétrico	1	Garibaldi	0.04	1.12E-08	-51.684	-29.212
+Plásticos e borracha	1	Garibaldi	0.02	6.06E-09	-51.685	-29.211
+Produtos de Metal	3	Garibaldi	2.32	6.35E-07	-51.687	-29.209
+Máquinas e Equipamentos	1	Garibaldi	0.02	6.59E-09	-51.687	-29.209
+Mobiliário	1	Monte Belo do Sul	0.02	6.69E-09	-51.687	-29.095
+Couros	2	Montenegro	2.76	1.44E-06	-51.688	-29.658
+Mobiliário	5	Garibaldi	0.03	9.40E-09	-51.688	-29.208
+Madeira	1	Garibaldi	0.00	1.80E-10	-51.689	-29.206
+Química	2	Montenegro	187.14	9.79E-05	-51.689	-29.66
+Máquinas e Equipamentos	2	Montenegro	0.60	3.12E-07	-51.689	-29.659
+Plásticos e borracha	1	Montenegro	0.07	3.83E-08	-51.693	-29.669
+Transporte	1	Brochier	0.13	6.88E-08	-51.701	-29.455
+Química	3	Triunfo	121.34	6.35E-05	-51.758	-29.805
+Alimentos	1	Westfália	0.63	3.31E-07	-51.78	-29.462
+Máquinas e Equipamentos	1	Guaporé	0.21	4.33E-07	-51.803	-28.907
+Produtos de Metal	1	Imigrante	0.59	1.24E-07	-51.817	-29.363
+Couros	1	Nova Araçá	0.05	1.35E-07	-51.836	-28.679
+Gráfica	1	Serafina Corrêa	0.00	4.94E-10	-51.842	-28.711
+Couros	1	Teutônia	0.13	6.56E-08	-51.848	-29.466
+Mobiliário	1	Nova Araçá	0.01	1.48E-08	-51.848	-28.676
+Produtos Diversos	2	Teutônia	0.03	1.36E-08	-51.848	-29.466
+Minerais não-Metálicos	2	Paraí	0.01	3.60E-08	-51.851	-28.642
+Mobiliário	1	Paraí	0.00	1.92E-09	-51.851	-28.642
+Química	1	Encantado	110.24	2.33E-05	-51.859	-29.243
+Couros	1	Encantado	1.04	2.19E-07	-51.863	-29.25
+Química	1	Roca Sales	6.84	1.44E-06	-51.867	-29.278
+Alimentos	2	Encantado	1.16	2.44E-07	-51.884	-29.21
+Mobiliário	1	Muçum	0.01	2.66E-09	-51.888	-29.171
+Mobiliário	1	Taquari	0.01	3.98E-09	-51.901	-29.764
+Madeira	2	Taquari	0.02	1.20E-08	-51.904	-29.75
+Química	1	Taquari	32.05	1.68E-05	-51.905	-29.744
+Produtos Diversos	9	Guaporé	0.41	7.29E-07	-51.913	-28.947
+Vestuário	1	Guaporé	0.00	8.53E-09	-51.921	-28.941
+Plásticos e borracha	1	Guaporé	0.03	6.18E-08	-51.922	-28.943
+Couros	2	Lajeado	10.58	5.53E-06	-51.931	-29.431
+Metalurgica	1	Guaporé	3.06	5.43E-06	-51.939	-28.924
+Material Elétrico	1	Venâncio Aires	0.24	1.24E-07	-51.944	-29.739
+Alimentos	2	Lajeado	1.17	6.10E-07	-51.945	-29.459
+Couros	1	Arroio do Meio	2.67	1.39E-06	-51.946	-29.426
+Alimentos	1	Arroio do Meio	0.21	1.08E-07	-51.951	-29.415
+Veículos Automotores	1	Estrela	0.02	9.92E-09	-51.958	-29.472
+Produtos de Metal	1	Lajeado	0.02	1.11E-08	-51.962	-29.419
+Química	1	Arroio do Meio	165.35	8.65E-05	-51.967	-29.419
+Mobiliário	1	Estrela	0.01	2.76E-09	-51.967	-29.474
+Química	1	Estrela	51.27	2.68E-05	-51.971	-29.496
+Alimentos	1	Cruzeiro do Sul	0.04	2.31E-08	-51.976	-29.537
+Alimentos	1	Venâncio Aires	0.07	3.46E-08	-51.977	-29.668
+Plásticos e borracha	1	Venâncio Aires	0.04	1.88E-08	-51.981	-29.663
+Fumo	7	Venâncio Aires	2.40	1.25E-06	-52.013	-29.637
+Máquinas e Equipamentos	1	Vila Maria	0.07	2.01E-07	-52.1	-28.663
+Máquinas e Equipamentos	2	Venâncio Aires	0.48	2.49E-07	-52.117	-29.608
+Plásticos e borracha	2	Marau	0.24	6.60E-07	-52.228	-28.501
+Máquinas e Equipamentos	1	Marau	0.31	8.52E-07	-52.24	-28.524
+Veículos Automotores	1	Passo Fundo	0.00	1.34E-08	-52.257	-28.381
+Couros	1	Marau	6.51	1.78E-05	-52.261	-28.49
+Produtos Diversos	5	Soledade	0.06	1.06E-07	-52.299	-28.874
+Produtos de Metal	1	Santa Cruz do Sul	2.48	1.30E-06	-52.308	-29.668
+Vestuário	1	Santa Cruz do Sul	0.00	2.39E-09	-52.312	-29.667
+Minerais não-Metálicos	1	Soledade	0.00	2.04E-10	-52.32	-28.82
+Equipamentos de precisão	1	Santa Cruz do Sul	0.01	4.16E-09	-52.326	-29.566
+Plásticos e borracha	2	Santa Cruz do Sul	0.15	7.81E-08	-52.33	-29.671
+Máquinas e Equipamentos	2	Santa Cruz do Sul	0.08	3.96E-08	-52.331	-29.551
+Produtos Diversos	1	Santa Cruz do Sul	0.18	9.42E-08	-52.331	-29.544
+

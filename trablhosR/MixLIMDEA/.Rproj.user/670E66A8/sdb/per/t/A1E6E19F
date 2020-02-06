@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1445210284142.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "A1E6E19F",
+    "lastKnownWriteTime" : 4294967040,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "qpfbxrlqg4",
+        "caption" : "viscosity",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=viscosity&cache_key=qpfbxrlqg4",
+        "displayedObservations" : "36",
+        "environment" : "",
+        "object" : "viscosity",
+        "totalObservations" : "36",
+        "variables" : "9"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

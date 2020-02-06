@@ -1,0 +1,17 @@
+{
+    "contents" : "#Anova chapter of Rbook \n\n# aov() function are quite simmilar with lm() function, but displays in a more\n# familiar way with the anova methodologies\n\n# aov uses \"formula\" form, the response variable is put in function of the factors\n# the \":\" means interactions between the factors\n# \n\n# one way anova exercises \nattach(cholesterol)\ntable(trt) # group sample sizes \n\n# table function table uses the cross-classifying factors to build a contingency table of the counts at each combination of factor levels.\n\naggregate(rr, by=list(trt),FUN=mean, data=cholesterol)\naggregate(rr,by=list(trt),FUN=sd)\n\n\n#test for group differences \n\nfit <-aov(rr~trt)\nsummary(fit)\nplotmeans(rr~trt) # cool tool for r plot in anova \nTukeyHSD(fit) # calculate pairwise differences for between groups \n\npar(las=2)\npar(mar=c(5,8,4,2))\nplot(TukeyHSD(fit))\n",
+    "created" : 1452168183928.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "713808653",
+    "id" : "CD12BF96",
+    "lastKnownWriteTime" : 1451861656,
+    "path" : "~/r/Rlearning/anova.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

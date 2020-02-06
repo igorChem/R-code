@@ -1,0 +1,18 @@
+{
+    "contents" : "# Analises GIS bacia Taquari\n\n\nteste <-shapefile(\"ptos_industria.shp\")\n\nteste <-raster(\"taquari.rst\")\n teste01 <- read.shp(\"ptos_industria.shp\")\n summary(teste01)\n teste02 <-raster(teste01)\nteste03=readShapeSpatial('~/r/GIs/ptos_industria')\nteste04 <-readOGR('ptos_industria.shp','rr')\n\nf <- raster(ncol=180,nrow=180)\nd <-rasterize(f,teste01)\n\nplot(test)\nteste05 <-rasterize(t,f)\nt <-as.matrix(test)\ng <-raster()\ne <-raster(nrows=1000,ncols=1000,xmn=-53,xmx=-49,ymn=-31,ymx=-27)\nr1 <-rasterize(municipios,e,mask=F)\nr01 <-rasterize(municipios,g,mask=F)\nplot(r1)\nsetwd(owd)\nfd <- readGDAL(\"Flujo_dir.tif\")\n\nds <-readGDAL(\"dem_corte2.tif\")\nplot(ds)\n\nogrDrivers()\nsas <-readGDAL(\"29S525ZN.tif.enp\")\nogrListLayers(sas)\ndss <-readOGR(\"29S525ZN.tif.enp\")\n\ntest05 <-readOGR(\"drenaje.shp\",layer=\"drenaje\")\ntest06 <-readOGR(\"Bacias_otras.shp\",layer=\"Bacias_otras\")\nteste07 <-readOGR(\"bacia_delim.shp\",layer = \"bacia_delim\")\nplot(test06)\nr01 <-rasterize(test06,e,field=1)\nr02 <-rasterize(test05,e,field=1)\nplot(r02)\nplot(teste07)\nr03 <-rasterize(teste07,e,field=0)\nplot(r03)\nsummary(r03)\nr03\nteste08 <-readOGR(\"corte_dem.shp\",layer=\"corte_dem\")\nplot(teste08)\nteste09 <-readOGR(\"ptos_industria.shp\",layer=\"ptos_industria\")\nplot(teste09)\nteste10 <-readOGR(\"bacia_delim.shp\",layer = \"ptos_industria\")\n\n\nrere <-raster(\"dem_corte2.tif\",layer=\"bacia_delim\")\nsummary(rere)\nplot(rere)\nfrf <-raster(\"Taquari.png\")\nffr <-raster(\"Flujo_dir.tif\")\nplot(ffr)\nsummary(ffr)\nffr\nnlayers(ffr)\nextract(ffr,34)\nfile <- system.file(\"external/test.grd\", package=\"raster\")\ns <- stack(file, file)\nlist1 <- unstack(s)\nb <- brick(s)\nlist2 <- unstack(b)\nded <-stack(ffr,dase)\nplot(ded)\ndase <-raster(teste07)\nded\nnlayers(ded)\nki <-mask(ded,ffr)\nki\nplot(ki)\nik <-mask(ffr,ded)\n",
+    "created" : 1455737121753.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4206383993",
+    "id" : "A3578245",
+    "lastKnownWriteTime" : 1454197409,
+    "path" : "~/r/GIs/GIS.R",
+    "project_path" : "GIS.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

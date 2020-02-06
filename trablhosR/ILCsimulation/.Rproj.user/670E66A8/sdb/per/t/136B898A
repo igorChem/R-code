@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1454725044657.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "136B898A",
+    "lastKnownWriteTime" : 4294967295,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "l6uneuzj9b",
+        "caption" : "co2sol",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=co2sol&cache_key=l6uneuzj9b",
+        "displayedObservations" : 7,
+        "environment" : "",
+        "object" : "co2sol",
+        "totalObservations" : 7,
+        "variables" : 4
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

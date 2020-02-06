@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1453680752059.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F2BF3E25",
+    "lastKnownWriteTime" : 80,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "0t2vr4dvy2",
+        "caption" : "mat1",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=mat1&cache_key=0t2vr4dvy2",
+        "displayedObservations" : 7,
+        "environment" : "",
+        "object" : "mat1",
+        "totalObservations" : 7,
+        "variables" : 10
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

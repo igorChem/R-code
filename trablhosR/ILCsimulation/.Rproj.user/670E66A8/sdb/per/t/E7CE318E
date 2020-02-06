@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1452452164289.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "E7CE318E",
+    "lastKnownWriteTime" : 3402541219572953143,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "l6uneuzj9b",
+        "caption" : "ilc2",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=ilc2&cache_key=l6uneuzj9b",
+        "displayedObservations" : 15,
+        "environment" : "",
+        "object" : "ilc2",
+        "totalObservations" : 15,
+        "variables" : 18
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

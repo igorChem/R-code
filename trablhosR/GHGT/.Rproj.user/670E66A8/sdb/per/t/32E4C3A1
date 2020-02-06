@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1454859279458.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "32E4C3A1",
+    "lastKnownWriteTime" : 80,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "epo8txpgko",
+        "caption" : "ILtable",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=ILtable&cache_key=epo8txpgko",
+        "displayedObservations" : "32",
+        "environment" : "",
+        "object" : "ILtable",
+        "totalObservations" : "32",
+        "variables" : "24"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

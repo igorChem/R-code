@@ -1,0 +1,83 @@
+\documentclass[a4paper,12pt]{article}
+
+%===========================================================
+%  packages 
+\usepackage[utf8]{inputenc}
+\usepackage[portuges]{babel}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{grffile}
+
+
+
+\author{Igor Barden Grillo   \\}
+\title{Modelagem Estátistica de medidas de Viscosidade e Capacidade Calorífica para soluções aquosas de Líquidos Iônicos}
+
+\begin{document}
+\date{}
+\maketitle
+\frenchspacing
+
+\newpage
+%===========================================================
+
+\section{Introdução}
+
+%===========================================================
+\section{Modelagem para dados de Vicosidade}
+
+\subsection{Estátisticas descritivas}
+
+%===========================================================
+% table with descirptive statistics for viscosity modelling 
+\begin{table}[htp]\centering
+\begin{tabular}{|c|c|c|p{2.5cm}|c|c|c|}
+ \hline
+Estatistica & Viscosidade & Densidade  & Fracao massica de LI & Volume  molar &  Temperatura \\ \hline   
+Mínimo   & 0.404 & 0.9778 & 0.0000 & 141.5 & 298.0 \\ \hline                                                                                                                                                    
+Média  & 15.974 & 1.1658 & 0.5749 & 209.6 & 309.6   \\ \hline      
+Mediana &  7.640 & 1.2070 & 0.5525 & 221.5 & 303.0  \\ \hline      
+Máximo & 161.050  & 1.3290 & 1.0000 & 291.7 & 343.0 \\ \hline      
+Desvio Padrão & 26.623 & 0.1105 &  0.364 & 32.44 & 14.47  \\ \hline      
+
+\end{tabular}
+\caption{Parametros de diatribuição das variáveis utilizadas na modelagem da viscosiade}
+\end{table}
+%===========================================================
+
+%===========================================================
+% table with correlation  statistics for viscosity modelling 
+\begin{table}[htp]\centering
+\begin{tabular}{p{2.8cm}|c|c|p{2.5cm}|p{2.5cm}|c|c|c|}
+ \hline
+ &  Viscosidade & Densidade  & Fracao massica de LI & Volume  molar &  Temperatura \\ \hline   
+Viscosidade  & 1 & 0.4258 & 0.2946 & -0.2570 &  -0.1411  \\ \hline                                                                                                                                                    
+Densidade  &0.42584 &  1&0.9176  & 0.0761 & 0.3957   \\ \hline      
+Fracao massica de LI &  0.2946 & 0.9176  & 1  &0.26572  &0.5513 \\ \hline      
+Volume  molar & -0.1411  & 0.0761 &0.2657  & 1  &0.6331  \\ \hline      
+Temperatura & -0.2570 &  & 0.5513  & 0.6331 & 1  \\ \hline      
+
+\end{tabular}
+\caption{Fator de correlação entre as variáveis}
+\end{table}
+%===========================================================
+
+%===========================================================
+% histogramas das variáveis 
+
+
+%===========================================================
+% 
+
+\subsection{Modelos Lineares}
+
+\section{Modelagem para dados de Capacidade Calorífica}
+
+\subsection{Estátisticas descritivas}
+\subsection{Modelos Lineares}
+
+\section{Sumário}
+
+\indent
+
+\end{document}cmcm

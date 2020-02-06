@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1445258529942.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "9FBBF390",
+    "lastKnownWriteTime" : 4591870180066957722,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "bmekqqs85k",
+        "caption" : "sorption",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=sorption&cache_key=bmekqqs85k",
+        "displayedObservations" : "26",
+        "environment" : "",
+        "object" : "sorption",
+        "totalObservations" : "26",
+        "variables" : "12"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

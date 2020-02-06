@@ -1,0 +1,12 @@
+# Script 2 
+
+# 0. First things
+# 1. Loading data
+# 2. anova 
+
+
+# 0. First things
+
+# setting working directory
+
+setwd("~/Dropbox/r/ANOVAluis")

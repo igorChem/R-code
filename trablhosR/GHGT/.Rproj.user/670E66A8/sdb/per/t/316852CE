@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1454894774416.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "316852CE",
+    "lastKnownWriteTime" : 0,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "3md35199kz",
+        "caption" : "anova",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=anova&cache_key=3md35199kz",
+        "displayedObservations" : "22",
+        "environment" : "",
+        "object" : "anova",
+        "totalObservations" : "22",
+        "variables" : "12"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

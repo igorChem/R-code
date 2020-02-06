@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1453750381058.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "82733C3C",
+    "lastKnownWriteTime" : 1453684883,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "0j9jgrir2f",
+        "caption" : "soja",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=soja&cache_key=0j9jgrir2f",
+        "displayedObservations" : "11",
+        "environment" : "",
+        "object" : "soja",
+        "totalObservations" : "11",
+        "variables" : "11"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

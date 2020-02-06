@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1455999407651.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "EB3D594",
+    "lastKnownWriteTime" : 2533296265232383,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "5ifn1vnebo",
+        "caption" : "dboConc",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=dboConc&cache_key=5ifn1vnebo",
+        "displayedObservations" : 115,
+        "environment" : "",
+        "object" : "dboConc",
+        "totalObservations" : 115,
+        "variables" : 3
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

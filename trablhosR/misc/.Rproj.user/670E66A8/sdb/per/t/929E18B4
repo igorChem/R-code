@@ -1,0 +1,17 @@
+{
+    "contents" : "# análises estatísticas dos cálculos de absorção\n\nattach(error)\nsummary(error)\naggregate(nmolsCO2,by=list(Tipo), FUN=mean)\n\n#Group.1            x\n#1 BmimSLES_30% -0.004967310\n#2  BmimSLS_30% -0.004968634\n#3  BmimSLS_50% -0.004678556\n#4          H2O -0.005422316\n#6    MixILMDEA  0.002591426\n#7     N4444BF4 -0.007558216\n#8     P4444BF4  0.003473620\n\n\naggregate(nmolsCO2,by=list(Tipo), FUN=sd)\n\n#Group.1           x\n#1 BmimSLES_30% 0.004366064\n#2  BmimSLS_30% 0.003882912\n#3  BmimSLS_50% 0.004055807\n#4          H2O 0.002809894\n#5    MixILMDEA 0.006967844\n#6     N4444BF4 0.002020067\n#7     P4444BF4 0.017975536\n\naggregate(QP,by=list(Tipo), FUN=mean)\n\naggregate(QP,by=list(Tipo), FUN=sd)\n\n#1 BmimSLES_30% 0.58010333\n#2  BmimSLS_30% 0.53767693\n#3  BmimSLS_50% 0.57303226\n#4          H2O 0.42746437\n#5    MixILMDEA 1.11831359\n#6     N4444BF4 0.14849242\n#7     P4444BF4 0.04949747\n\naggregate(Densidade_.l..quido,by=list(Tipo), FUN=sd)\n\n#Group.1          x\n#1 BmimSLES_30% 30.27181185\n#2  BmimSLS_30% 0.28588327\n#3  BmimSLS_50% 0.29988399\n#4          H2O 0.09387715\n#5    MixILMDEA 0.59909102\n#6     N4444BF4 0.42178919\n#7     P4444BF4 0.07615540\n\n\nvol <- Massa_l..quido/Densidade_.l..quido\n\naggregate(vol,by=list(Tipo), FUN=sd)\n\naggregate(vol,by=list(Tipo), FUN=mean)\nplotmeans(QP~Tipo)\nplotmeans(nmolsCO2~Tipo)\n\nfit1 <-aov(QP~Tipo)\nTukeyHSD(fit1)\nplot(TukeyHSD(fit1))\n\nfit2 <-aov(nmolsCO2~Tipo)\nTukeyHSD(fit2)\n\nfit3 <-aov(vol~Tipo)\nvol\nTukeyHSD(fit3)\n\nfit4 <-lm(nmolsCO2~QP)\nsummary(fit4)\n\nxyplot(QP~vol|Tipo)\nxyplot(nmolsCO2~vol|Tipo)\nxyplot(QP~nmolsCO2|Tipo,cex=1.1,pch=5,type=c(\"g\",\"p\"))\nxyplot(QP~nmolsCO2)\nplot(QP,nmolsCO2,xlab = \"Queda de Pressão\",ylab = \"nmols CO2absorvidos\",\n     main = \"Celula de Equilibrio\")\npar(tck=1,cex=1.4)\nabline(h=0,v=7.6,col=\"red\")\nxyplot(log(QP)~Densidade_.l..quido|Tipo)\n\n",
+    "created" : 1452168105824.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2941820071",
+    "id" : "929E18B4",
+    "lastKnownWriteTime" : 1452193998,
+    "path" : "~/r/misc/error.R",
+    "project_path" : "error.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "type" : "r_source"
+}

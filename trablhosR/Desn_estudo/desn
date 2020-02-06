@@ -1,0 +1,369 @@
+# Estudo da dendisdade de soluções de liquidos ionicos 
+
+# Primeiro objetivo: verificar de  há dados suficientes para modelos multivariados
+# para predição da densidade de soluções 
+
+# Segundo objetivo: teatar modelos para densidade 
+# 1) aditivo 
+# 2) polinomial com temperatura 
+# 3) modelo com índice de refração 
+
+
+# Terceiro Objetivo: fazer os próprios modelos de para densidade 
+# Quarto Objetivo: estudo multivariado da propriedades 
+
+
+#===================================================================================
+
+# 1º parte 
+
+# 0. first adjusts
+# 1. Load data 
+# 2. Analyse data 
+# 3. Plots 
+# 4. Modelos 
+# 5. considerações e outros 
+
+#===================================================================================
+
+# 0. first adjusts
+
+# set dir 
+
+setwd("~/r/Desn_estudo")
+
+# load packages 
+
+.libPaths("/home/igor/R/x86_64-pc-linux-gnu-library/3.0")
+
+library(pls)
+library(ggplot2) 
+library(lattice)
+library(caret)
+library(KRLS)
+
+#=================================================================================
+
+# 1.Load data---------------------------------------------------------------------
+
+tab1 <-read.delim("dens") # tabela primária de dados
+head(tab1)
+summary(tab1)
+str(tab1)
+
+# nomes das variaveis ------------------------------------------------------------
+
+names(tab1)
+
+[1] "C.mol.L."         "massfractionIL"   "massfractionH2O"  "molarfractionIL" 
+ [5] "Density"          "surface.tension"  "Viscosity..cP."   "Refractive.index"
+ [9] "IL"               "Cation"           "Anion"            "Temperature.K."  
+[13] "MW"               "Mwcation"         "Mwanion"          "Alkyl.Lenght"    
+[17] "MVIL"             "Density.pure."   
+
+#---------------------------------------------------------------------------------
+
+# load test data para os modelos de densidade------------------------------------
+
+
+
+# tabelas e modificações----------------------------------------------------------
+
+attach(tab1) # anexar a tabela principal para gerar as outras 
+
+#--------------------------------------------------------------------------------
+tab3 <-subset(tab1,!Density=="NA") # tabelas utilizadas nos modelos 
+tab4 <-subset(tab3,!Density.pure.=="NA")
+
+x <- data.frame(mf,Temperature.K.,Mwanion,Density)
+x <-na.omit(x)
+
+#-------------------------------------------------------------------------------
+
+tab2 <- subset(tab1, Temperature.K.=="298")
+# Variáveis----------------------------------------------------------------------
+
+Temp <-Temperature.K.-273 # temperatura em celcius 
+
+#-------------------------------------------------------------------------------
+MFdp <-seq(0,0.3,length=30)          # variáveis para persp
+Temperatura <-seq(25,70,length=30)
+#-------------------------------------------------------------------------------
+
+
+# paleta de cores para persp----------------------------------------------------- 
+
+z <-Densidade 
+jet.colors <- colorRampPalette(c("purple","blue", "green","yellow","orange","red"))
+nbcol <- 1000
+color <- jet.colors(nbcol)
+nrz <- nrow(z)
+ncz <- ncol(z)
+zfacet <- z[-1, -1] + z[-1, -ncz] + z[-nrz, -1] + z[-nrz, -ncz]
+facetcol <- cut(zfacet, nbcol)
+
+
+#=================================================================================
+
+# 2. analyse data
+
+
+# plots com densidade ------------------------------------------------------------
+
+a <-MW*Refractive.index
+boxplot(Density~Alkyl.Lenght)
+plot(Density~Temperature.K.)
+plot(Density~massfractionIL) # esse é o mais provável
+plot(Density~molarfractionIL) # esse não da 
+plot(Density~C.mol.L.)
+
+xyplot((Density-Density.pure.)~massfractionIL
+				|IL,auto.key=T)
+
+#----------------------------------------
+attach(tab4) 
+#---------------------------------------------------------------------------------
+
+xyplot(log1p(Density-Density.pure.)~(massfractionIL)
+				     |IL,auto.key=T)
+
+Den <-Density*(Density-Density.pure.)
+
+xyplot(Den~massfractionIL|IL,auto.key=T)
+
+xyplot(Density~(massfractionIL*Density.pure.^3)
+				|IL,auto.key=T)
+
+xyplot(Density~(massfractionIL*(Density.pure.-1))
+				|Anion,auto.key=T) # padrão entre anions 
+
+xyplot(Density~(massfractionIL*(Density.pure.-1))
+				|Cation,auto.key=T) # 
+
+# trends com anion e cations -----------------------------------------------------
+
+plot(Density~Anion,data=tab3)
+
+boxplot(Density~Mwanion) # 
+
+boxplot(Density~Mwcation)
+
+boxplot(Density~MW)
+
+boxplot(Density~Density.pure.*massfractionIL)
+
+plot(Density~Temperature.K.)
+
+plot(Density.pure.~Temperature.K.)
+
+xyplot(Density.pure.~Temperature.K.*(Density.pure.-1)
+				   |Anion,auto.key=T)
+
+plot(1/Density~MVIL)
+
+xyplot(Density~Temperature.K.*Density.pure.*massfractionIL*Mwanion
+						|Anion,auto.key=T)
+
+# ================================================================================
+
+# 3. testar modelos 
+
+# modelo aditivo ( primeiramente. só na temperatura de 298) -----------------------
+
+tab2 <- subset(tab1, Temperature.K.=="298")
+detach(tab1)
+attach(tab2)
+
+# geração de pontos usando os modelos 
+mod1 <-(massfractionIL*Density.pure.+massfractionH2O*0.997)
+mod2 <-(massfractionIL*MW/Density.pure.)+massfractionH2O*0.997/18
+
+# teste do modelo aditivo ---------------------------------------------------------
+
+plot(Density~mod1)
+
+#=================================================================================
+
+# 4. Meus modelos-----------------------------------------------------------------
+
+mf <-massfractionIL*(Density.pure.-1)
+
+# Essa relação parece ser a que melhor funcionou
+
+xyplot(Density~(massfractionIL*(Density.pure.-0.997))
+				      |IL,auto.key=T)
+
+# modelos lineares-------------------------------------------------------------- 
+
+mod1 <-lm(Density~Temperature.K.+mf)
+summary(mod1)
+
+#-------------------------------------------------------------------------------
+
+Temp <-Temperature.K.-273
+mod2 <-lm(Density~massfractionIL+Temp+mf)
+summary(mod2)
+predplot(mod2)
+
+
+#Análise de erros--------------------------------------------------------------
+
+
+h <-predict(mod2)
+plot(residuals(mod1)~Anion)
+plot(residuals(mod1)~Cation)
+
+#-------------------------------------------------------------------------------
+mod3 <-lm(Density~mf+I(Temp*mf))
+summary(mod3)
+#-------------------------------------------------------------------------------
+mod4 <-lm(Density~Temperature.K.+mf)
+summary(mod4)
+
+# pls 
+pls1 <-mvr(Density~(massfractionIL*Temperature.K.)+MW+(Density.pure.*massfractionIL),,data=tab3,method="oscorespls",validation="CV")
+summary(pls1)
+
+pls2 <-mvr(Density~massfractionIL+mf+Temperature.K.+Mwanion,data=tab3,method="widekernelpls",validation="CV")
+summary(pls2)
+
+
+#4.1 modelo escolhido ------------------------------------------------------------
+
+Temp <-Temperature.K.-273
+mod2 <-lm(Density~massfractionIL+Temp+mf)
+summary(mod2)
+
+mod30 <-lm(Density~+Temp+mf)
+summary(mod30)
+
+#Análise de erros -------------------------------------------------------------
+h <-predict(mod2)
+plot(residuals(mod2)~Anion)
+plot(residuals(mod2)~Cation)
+
+# 4.2 Modelos de statistical learning ------------------------------------------
+
+
+
+# criar matrizes e variáveis----------------------------------------------------
+
+x <- data.frame(mf,Temperature.K.,Mwanion,Density)
+x <-na.omit(x)
+#------------------------------------
+
+mod01 <-krls(X=x[,-4],y=x[,4]) 
+summary(mod01)
+plot(mod01)
+
+#-------------------------------------------------------------------------------
+
+z <- data.frame(mf,Temperature.K.,MVIL,MW,Density)
+z <-na.omit(z)
+
+mod02 <-krls(X=z[,-5],y=z[,5]) 
+summary(mod02)
+plot(mod02)
+
+#código para o predplot---------------------------------------------------------
+ plot(z[,5]~fitted(mod02))
+#-----------------------------------------------------------------------
+
+w <- data.frame(mf,Temp,Mwanion,Mwcation,Density)
+w <-na.omit(w)
+#------------------------------------
+
+mod03 <-krls(X=w[,-5],y=w[,5]) #---------------------------- é esse
+summary(mod03)
+plot(mod03)
+
+#------------------------------------
+mod3 <-train(w[,-5],w[,5],method="krlsRadial")# --- não deu muito certo
+
+# 4.3 dados dos modelos escolhidos e seus plots 
+
+# plots dos modelos------------------------------------------------------------- 
+#plots essnciais: 
+# predplot
+# Alguma coisa para análise de erros 
+# plot multivariado do modelo, concentraçãoXtemperatura
+
+# outros plots ------------------------------------------------------------------
+# expectation plots 
+
+# primeiro modelo ---------------------------------------------------------------
+
+# predplot----------------------------------------------------------------------
+
+tiff("predplot.tiff", width = 6, height = 7, units = 'in', res = 230)
+predplot(mod1,ylab="Densidade Prevista",xlab="Densidade experimental")
+dev.off()
+
+# 3d plot; response curve-------------------------------------------------------- 
+
+# Definir as variavais para a função --------------------------------------------
+
+MFdp <-seq(0,0.3,length=30)
+Temperatura <-seq(298,343,length=30)
+
+#Montar a função que resultara em densidade
+
+f1 <-function(MFdp,Temperatura) 
+	{1.069609-0.000224*Temperatura+0.989895*MFdp}
+
+# calcular a densidade para o produto matricial dos comprimentos estabelecidos 
+Densidade <-outer(MFdp,Temperatura,f1)
+
+#--------------------------------------------------------------------------------
+
+tiff("3dplot",width = 6, height = 7, units = 'in', res = 230)
+	persp(MFdp,Temperatura,Densidade,phi = 20,theta = -40,shade=T ,ticktype = 		"detailed",col=color[facetcol],
+		ylab="Temperatura (C°)",xlab="MFdp",zlab="Densidade(g/cm³)")
+dev.off()
+
+#--------------------------------------------------------------------------------
+
+# análise de erros---------------------------------------------------------------
+h <-predict(mod1)
+plot(residuals(mod1)~Anion)
+plot(residuals(mod1)~Cation)
+plot(residuals(mod1)~IL)
+boxplot(residuals(mod30)~MW)
+#=================================================================================
+
+# 5. considerações e outros
+
+#---------------------------------------------------------------------------------
+## tabela geral: concentração molar está como fator
+# talvez recrair essa variável usando as funções do R  
+# mesma coisa para o volume molar do IL. dropar essa variável 
+#---------------------------------------------------------------------------------
+
+# Definir as variavaiis para a função 
+
+MFdp <-seq(0,0.3,length=30)
+Temperatura <-seq(25,70,length=30)
+
+#Montar a função que resultara em densidade
+
+f1 <-function(MFdp,Temperatura) 
+	{1.069609-0.000224*Temperatura+0.989895*MFdp}
+
+# calcular a densidade para o produto matricial dos comprimentos estabelecidos 
+Densidade <-outer(MFdp,Temperatura,f1)
+
+inTrain <-creatDataPartition(y=Den
+
+
+
+
+
+
+
+
+
+
+
+
+
+

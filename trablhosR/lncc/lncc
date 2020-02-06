@@ -1,0 +1,98 @@
+# LNCC work 
+
+# 1. Load the data and packages--------------------------------------------------
+
+setwd("~/r/lncc")
+.libPaths("~/R/x86_64-pc-linux-gnu-library/3.0")
+
+library(caret) 
+library(pls)
+
+tab1 <-read.table("data",header=T) 
+str(tab1) 
+
+# 2. Plots e lms------------------------------------------------------------------
+
+splom(tab1[2:9])
+attach(tab1)
+plot(Conversão~log1p(DeltaN))
+plot(Conversão~Dureza)
+
+ac <-1/Acidity
+ac1<-1/Acidity1
+
+plot(Conversão~ac)
+plot(Conversão~ac1)
+
+plot(Conversão~1/Acidity1)
+plot(Conversão~Basicity1)
+plot(Conversão~Acidity)
+plot(Conversão~Basicity)
+plot(Conversão~Net.Basicity)
+plot(Conversão~Chemical.Potential)
+
+# PCA--------------------------------------------------------------------------
+
+pca1 <-prcomp(tab1[,-1],scale=T)
+
+
+pca2 <- prcomp(tab1[-7,-1],scale=T)
+
+# modelos lineares---------------------------------------------------------------
+
+mod1 <- lm(Conversão~I) 
+summary(mod1)
+
+
+mod2 <-lm(log(Conversão)~Acidity)
+summary(mod2)
+
+
+p-value: 0.002379
+R-squared:  0.8384 
+
+
+
+
+j <-ggplot(tab1, aes(x=Acidity, y=exp(-Conversão/4)))+
+  geom_point(shape=1) +
+  geom_smooth(method=lm)+  
+  labs(y="exp(-Conversão/4)",x="Eletronegatividade/Dureza")
+tiff("plot1",res=220,width=6,height=6,units="in")
+j
+dev.off()
+
+
+mod3 <-lm(exp(-Conversão/4)~Acidity)
+summary(mod3)
+c <- -log((2.19347*Acidity*1.72558)^4)
+mod4 <-lm(Conversão~c)
+summary(mod4)
+d <-exp(-Acidity/4)
+plot(log(Conversão)~Acidity)
+
+plot(Conversão~d)
+R-squared:  0.9838
+p-value: 7.232e-0
+
+a <-2.19347
+b <-1.72558
+c <-1/4 
+y <-Conversão
+x <-Acidity
+plot(y~log((a*b*x)^-c))
+
+plot(y~log(a)+log(x))
+
+
+
+
+
+
+
+
+
+
+
+
+
