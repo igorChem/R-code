@@ -69,7 +69,7 @@ rownames(gfoafdMat) <-rowN3
 pheatmap(foafoaMat,color = colorRampPalette(c("white","cyan","blue"))(100),border_color=NA,cluster_cols=F,fontsize=15,main="\n",
 filenam="l.l",width=12,height=16)
 
-pheatmap(fdfdMat,color = colorRampPalette(c("white","cyan","blue"))(100),border_color=NA,cluster_cols=F,fontsize=8,main="\n",
+pheatmap(fdfdMat,color = colorRampPalette(c("white","lightgreen","green","black"))(200),border_color=NA,cluster_cols=F,fontsize=8,main="\n",
 filenam="f.png",width=3.3,height=3.3)
 
 pheatmap(foafdMat,color = colorRampPalette(c("white","navy"))(100),border_color=NA,cluster_cols=F,fontsize=8,main="\n",
